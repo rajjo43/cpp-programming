@@ -4,43 +4,41 @@ For example,
 Input: Technical Interview Preparation
 Output: Preparation Interview Technical*/
 
-#include<iostream>
-#include<stack>
-#include<queue>
-#include<bits/stdc++.h>
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <sstream>
 using namespace std;
 
-int main()
-{
-    queue<string>qu1,qu2;
-    stack<string>stk;
-    string str;
-    cout<<"Enter the string"<<endl;
-    getline(cin,str);
+int main() {
+    string line;
+    cout << "Enter line: ";
+    getline(cin, line);  // Read the entire line including spaces
+    
+    queue<string> q;
+    stringstream ss(line);
+    string word;
 
-    stringstream s(str);
-    string eachword;
-
-    while(s>>eachword)
-    {
-        qu1.push(eachword);
+    // Enqueue all words into the queue
+    while (ss >> word) {
+        q.push(word);
     }
 
-    while(!qu1.empty())
-    {
-        stk.push(qu1.front());
-        qu1.pop();
+    stack<string> st;
+
+    // Move all words from queue to stack to reverse order
+    while (!q.empty()) {
+        st.push(q.front());
+        q.pop();
     }
 
-    while(!stk.empty())
-    {
-        qu2.push(stk.top());
-        stk.pop();
+    // Print words in reverse order
+    while (!st.empty()) {
+        cout << st.top();
+        st.pop();
+        if (!st.empty()) cout << " ";
     }
+    cout << endl;
 
-    while(!qu2.empty())
-    {
-        cout<<qu2.front()<<" ";
-        qu2.pop();
-    }
+    return 0;
 }
