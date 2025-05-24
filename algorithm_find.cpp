@@ -9,7 +9,7 @@ int main()
     v.push_back("abc");
     v.push_back("xyz");
 
-    if(std::find(v.begin(),v.end(),"xyz")!=v.end()){
+    if(find(v.begin(),v.end(),"xyz")!=v.end()){
         cout<<"Word found"<<endl;
     }
     else{
