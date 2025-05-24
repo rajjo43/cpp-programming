@@ -3,32 +3,46 @@
 Input: str= “azxxzy”
 Output: ay*/
 
-#include<iostream>
-#include<stack>
-#include<queue>
-#include<bits/stdc++.h>
+#include <iostream>
+#include <stack>
+#include <string>
 using namespace std;
 
 int main()
 {
-    queue<char>qu1;
-    stack<char>stk1,stk2;
+    stack<char> stk1, stk2;
     string str;
-    cout<<"Enter the string"<<endl;
-    getline(cin,str);
+    cout << "Enter the string: ";
+    getline(cin, str);
 
-    for(char ch:str)
-    {
-        if(stk1.empty() || ch!=stk1.top()){
+    // Remove adjacent duplicates using a stack
+    for (char ch : str) {
+        if (stk1.empty() || ch != stk1.top()) {
             stk1.push(ch);
-        }
-        else{
+        } else {
             stk1.pop();
         }
     }
 
-    while(!stk1.empty())
-    {
+    // Reverse stack to get correct order
+    while (!stk1.empty()) {
+        stk2.push(stk1.top());
+        stk1.pop();
+    }
+
+    if (stk2.empty()) {
+        cout << "Empty String" << endl;
+    } else {
+        while (!stk2.empty()) {
+            cout << stk2.top();
+            stk2.pop();
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
         stk2.push(stk1.top());
         stk1.pop();
     }
